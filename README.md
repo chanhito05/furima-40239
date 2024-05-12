@@ -4,7 +4,6 @@
 
  | Column             | Type       | Options                    |
  |--------------------|------------|----------------------------|
- | id                 | integer    | primary_key, auto_increment|
  | email              | string     | null: false, unique: true  |
  | encrypted_password | string     | null: false                |
  | username           | string     | null: false, unique: true  |
@@ -25,7 +24,6 @@
 
  | Colum             | Type        | Options                     |
  |-------------------|-------------|-----------------------------|
- | id                | integer     | primary_key, auto_increment |
  | title             | string      | null: false                 |
  | description	     | text        | null: false                 |
  | price             | decimal     | null: false                 |
@@ -45,7 +43,6 @@
 
 | Colum             | Type        | Options                     |
 |-------------------|-------------|-----------------------------|
-| id                | integer     | primary_key, auto_increment |
 | name              | string      | not null, unique            |
 | created_at        | datetime    | not null, default: current_timestamp|
 | update_at         | datetime    | not null, default: current_timestamp|
@@ -58,7 +55,6 @@
 
 | Colum             | Type        | Options                     |
 |-------------------|-------------|-----------------------------|
-| id                | integer     | primary_key, auto_increment |
 | user_id           | integer     | foreign_key                 |
 | total_price       | decimal	    | null:false                  |
 | status            | string      | null:false                  |
@@ -74,7 +70,6 @@
 
 | Colum             | Type        | Options                     |
 |-------------------|-------------|-----------------------------|
-| id                | integer     | primary_key, auto_increment |
 | user_id           | integer     | foreign_key                 |
 | item_id           | integer     | foreign_key                 |
 | rating            | integer     | null:false                  |
