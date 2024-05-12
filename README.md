@@ -15,8 +15,9 @@
 
  ### Association
 
- * has_many :categories
- * has_many :review
+ * belong_to :item
+ * has_many :order
+ * has_many :shipping_addresses
  
 
  ## items table
@@ -24,16 +25,20 @@
  | Colum             | Type        | Options                     |
  |-------------------|-------------|-----------------------------|
  | title             | string      | null: false                 |
- | description	     | text        | null: false                 |
+ | description_id	   | integer     | null: false                 |
  | price             | integer     | null: false                 |
- | condition	       | String      | null: false                 |
- | category_id	     | Integer     | foreign_key                 |
+ | condition_id      | integer     | null: false                 |
+ | category_id	     | integer     | foreign_key                 |
  | user_id           | integer     | foreign_key                 |
- 
+ | status_id         | integer     | null: false                 |
+ | image             | string      | null: false                 |
+ | free_payer_id     | integer     | null: false                 |
+ | city_id           | integer     | null: false                 |
+ | day_id            | integer     | null: false                 |
 
  ### Association
 
-* belongs_to :category
+* belongs_to :order
 * belongs_to :user
 
 
@@ -41,11 +46,23 @@
 
 | Colum             | Type        | Options                     |
 |-------------------|-------------|-----------------------------|
-| user              | references  | foreign_key                 |
-| total_price       | decimal	    | null:false                  |
-| item_id           | integer     | references items            |
+| user              | references  | foreign_key,not null        |
+| item_id           | reference   | references items, foreign_key,not null|
 
 ### Association
 
 * belongs_to :user
-* belong_to :item
+* has_many :item
+
+### shipping addresses
+
+| Colum             | Type        | Options                     |
+|-------------------|-------------|-----------------------------|
+| fee_payer_id      | integer     | null: false                 |
+| area_id           | integer     | null: false                 |
+| day_id            | integer     | null: false                 |
+
+
+ ### Association
+
+* belongs_to :user
