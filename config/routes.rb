@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'articles/index'
-  get 'articles/new'
-  root to: 'articles#index'
-  resources :articles
+  Rails.application.routes.draw do
+    devise_for :users
+    root 'items#index'
+  end
 end

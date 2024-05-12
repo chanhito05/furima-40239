@@ -48,5 +48,4 @@
 ### Association
 
 * belongs_to :user
-* has_many :order_items
-
+* belong_to :item
