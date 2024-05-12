@@ -11,8 +11,7 @@
  | lase_name_kana     | string     | null: false                |
  | first_name_kana    | string     | null: false                |
  | birth_day          | date       | not null                   |
- | created_at         | datetime   | not null, default: current_timestamp|
- | update_at          | datetime   | not null, default: current_timestamp|
+
 
  ### Association
 
@@ -30,9 +29,7 @@
  | condition	       | String      | null: false                 |
  | category_id	     | Integer     | foreign_key                 |
  | user_id           | integer     | foreign_key                 |
- | created_at        | datetime    | not null, default: current_timestamp|
- | updated_at        | datetime    | not null, default: current_timestamp|
-
+ 
 
  ### Association
 
