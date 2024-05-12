@@ -6,11 +6,11 @@
  |--------------------|------------|----------------------------|
  | email              | string     | null: false, unique: true  |
  | encrypted_password | string     | null: false                |
- | username           | string     | null: false, unique: true  |
- | name               | string     | null: false                |
- | profile            | text       | null: false                |
- | occupation         | string     | null: false                |
- | position           | string     | null: false                |
+ | last_name          | string     | null: false,               |
+ | first_name         | string     | null: false                |
+ | lase_name_kana     | string     | null: false                |
+ | first_name_kana    | string     | null: false                |
+ | birth_day          | date       | not null                   |
  | created_at         | datetime   | not null, default: current_timestamp|
  | update_at          | datetime   | not null, default: current_timestamp|
 
@@ -26,9 +26,9 @@
  |-------------------|-------------|-----------------------------|
  | title             | string      | null: false                 |
  | description	     | text        | null: false                 |
- | price             | decimal     | null: false                 |
- | condition	       | string      | null: false                 |
- | category_id	     | integer     | foreign_key                 |
+ | price             | integer     | null: false                 |
+ | condition	       | String      | null: false                 |
+ | category_id	     | Integer     | foreign_key                 |
  | user_id           | integer     | foreign_key                 |
  | created_at        | datetime    | not null, default: current_timestamp|
  | updated_at        | datetime    | not null, default: current_timestamp|
@@ -39,45 +39,17 @@
 * belongs_to :category
 * belongs_to :user
 
-## categories table
-
-| Colum             | Type        | Options                     |
-|-------------------|-------------|-----------------------------|
-| name              | string      | not null, unique            |
-| created_at        | datetime    | not null, default: current_timestamp|
-| update_at         | datetime    | not null, default: current_timestamp|
-
-### Association
-
-* has_many :items
 
 ### orders table
 
 | Colum             | Type        | Options                     |
 |-------------------|-------------|-----------------------------|
-| user_id           | integer     | foreign_key                 |
+| user              | references  | foreign_key                 |
 | total_price       | decimal	    | null:false                  |
-| status            | string      | null:false                  |
-| created_at        | datetime    | not null, default: current_timestamp|
-| updated_at        | datetime    | not null, default: current_timestamp|
+| item_id           | integer     | references items            |
 
 ### Association
 
 * belongs_to :user
 * has_many :order_items
 
-### reviews table
-
-| Colum             | Type        | Options                     |
-|-------------------|-------------|-----------------------------|
-| user_id           | integer     | foreign_key                 |
-| item_id           | integer     | foreign_key                 |
-| rating            | integer     | null:false                  |
-| comment           | text        |                             |
-| created_at        | datetime    | not null, default: current_timestamp|
-| updated_at        | datetime    | not null, default: current_timestamp|
-
-### Association
-
-* belongs_to :user
-* belongs_to :item
