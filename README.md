@@ -29,17 +29,12 @@
  | price             | integer     | null: false                 |
  | condition_id      | integer     | null: false                 |
  | category_id	     | integer     | null: false                 |
- | user_id           | integer     | foreign_key                 |
- | status_id         | reference   | foreign_key, null:false     |
- | free_payer_id     | integer     | null: false                 |
- | city_id           | integer     | null: false                 |
- | shipping_date_id  | integer     | null: false                 |
+ | user              | references  | foreign_key, null: false    |
 
  ### Association
 
-* has_many :orders
+* has_one :order
 * belongs_to :user
-* belongs_to :shipping addresses
 
 
 ### order table
@@ -47,20 +42,20 @@
 | Colum             | Type        | Options                     |
 |-------------------|-------------|-----------------------------|
 | user              | references  | foreign_key, null: false    |
-| item              | references  | references items, foreign_key,null: false|
+| item              | references  | foreign_key,  null: false   |
 
 ### Association
 
 * belongs_to :user
 * belong_to :items
-* belong_to :shipping_addresses
+* has_one :shipping_addresses
 
 ### shipping_addresses table
 
 | Colum             | Type        | Options                     |
 |-------------------|-------------|-----------------------------|
 | postal_code       | string      | null: false                 |
-| prefecture        | string      | null: false                 |
+| prefecture_name   | string      | null: false                 |
 | city              | string      | null: false                 |
 | address_line1     | string      | null: false                 |
 | address_line2     | string      |                             |
@@ -69,5 +64,4 @@
 
  ### Association
 
-* belongs_to :item
-* has_many :orders
+* belong_to :orders
