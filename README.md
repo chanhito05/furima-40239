@@ -44,9 +44,6 @@
 |-------------------|-------------|-----------------------------|
 | user              | references  | foreign_key, null: false    |
 | item              | references  | foreign_key,  null: false   |
-| free_payer_id     | integer     | null: false                 |
-| city_id           | integer     | null: false                 |
-| shipping_date_id  | integer     | null: false                 |
 
 ### Association
 
@@ -59,7 +56,7 @@
 | Colum             | Type        | Options                     |
 |-------------------|-------------|-----------------------------|
 | postal_id   　　　 | string      | null: false                 |
-| prefecture_id     | string      | null: false                 |
+| shipping_region_id| integer     | null: false                 |
 | city              | string      | null: false                 |
 | address_line1     | string      | null: false                 |
 | address_line2     | string      |                             |

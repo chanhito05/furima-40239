@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="Byp4nlpNVExB9IxGzHuJ" name="ページ1">
-        <mxGraphModel dx="424" dy="647" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+        <mxGraphModel dx="1988" dy="1078" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -28,7 +28,7 @@
                 <mxCell id="80" value="" style="line;strokeWidth=1;direction=east;html=1;" parent="1" vertex="1">
                     <mxGeometry x="836.5" y="221.5" width="10" height="13" as="geometry"/>
                 </mxCell>
-                <mxCell id="82" value="&lt;b&gt;&amp;nbsp;shipping_addresses&lt;br&gt;&lt;br&gt;&lt;br&gt;&amp;nbsp;postal_id(string型,null:false)&lt;br&gt;&amp;nbsp;prefecture_id(string型, null: false)&lt;br&gt;&amp;nbsp;city(string型,null: false)&lt;br&gt;&amp;nbsp;address_line1(string型,null: false)&lt;br&gt;&amp;nbsp;address_line2(string型)&lt;br&gt;&amp;nbsp;phone_number( string,null_false)&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
+                <mxCell id="82" value="&lt;b&gt;&amp;nbsp;shipping_addresses&lt;br&gt;&lt;br&gt;&lt;br&gt;&amp;nbsp;postal_id(string型,null:false)&lt;br&gt;&amp;nbsp;shipping_region_id_id(sinteger型, null: false)&lt;br&gt;&amp;nbsp;city(string型,null: false)&lt;br&gt;&amp;nbsp;address_line1(string型,null: false)&lt;br&gt;&amp;nbsp;address_line2(string型)&lt;br&gt;&amp;nbsp;phone_number( string,null_false)&lt;br&gt;order(references型,外部キー有効,null: false)&lt;br&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" parent="1" vertex="1">
                     <mxGeometry x="20" y="561" width="280" height="190" as="geometry"/>
                 </mxCell>
                 <mxCell id="84" value="" style="line;strokeWidth=1;direction=west;html=1;rounded=0;" parent="1" vertex="1">
