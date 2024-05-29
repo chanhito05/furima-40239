@@ -1,12 +1,26 @@
 class ItemsController < ApplicationController
-  
+  before_action :authenticate_user!, only: [:new, :create]
+
   def index
-  #  @items = Item.all
+   @items = Item.all
   end
-=begin 商品一覧機能のプルリクエストで使用するため
-  def search
-    @items = Item.where('name LIKE ?', "%#{params[:q]}%")
-    render :index
+  
+  def new
+    @item = Item.new
   end
-=end
-end
+
+  def create
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to @item, notice: '商品が正常に出品されました。'
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:image, :name, :description, :category, :condition, :shipping_cost, :shipping_area, :shipping_time, :price)
+  end
+end  
