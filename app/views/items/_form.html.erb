@@ -1,8 +1,22 @@
 <%= form_with(model: @item, local: true) do |form| %>
+  <%= render 'shared/error_messages', model: form.object %> <!-- エラーメッセージの表示 -->
+
   <div class="field">
     <%= form.label :price, "価格" %>
-    <%= form.number_field :price, min: 300, max: 9_999_999, required: true, step: 1, placeholder: "例）300", oninput: "validatePrice()" %>
+    <%= form.number_field :price, min: 300, max: 9_999_999, required: true, step: 1, placeholder: "例）300", oninput: "validatePrice(); calculateProfit();" %>
     <span id="price-error" style="color: red; display: none;">価格は¥300~¥9,999,999の間の半角数値で入力してください。</span>
+  </div>
+  <div class="price-content">
+    <span>販売手数料 (10%)</span>
+    <span>
+      <span id='add-tax-price'></span>円
+    </span>
+  </div>
+  <div class="price-content">
+    <span>販売利益</span>
+    <span>
+      <span id='profit'></span>円
+    </span>
   </div>
   <!-- 他のフィールドはそのまま -->
   <div class="actions">

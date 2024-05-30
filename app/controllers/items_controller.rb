@@ -1,10 +1,9 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
-  
+
   def show
     @item = Item.find(params[:id])
   end
-
 
   def index
     @items = Item.all
