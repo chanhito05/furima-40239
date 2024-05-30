@@ -1,10 +1,15 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  
+  def show
+    @item = Item.find(params[:id])
+  end
+
 
   def index
-   @items = Item.all
+    @items = Item.all
   end
-  
+
   def new
     @item = Item.new
   end
@@ -21,6 +26,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:image, :name, :description, :category, :condition, :shipping_cost, :shipping_area, :shipping_time, :price)
+    params.require(:item).permit(:image, :name, :description, :category_id, :condition_id, :shipping_cost_id, :shipping_area_id, :shipping_time_id, :price)
   end
-end  
+end
