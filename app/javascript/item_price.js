@@ -1,7 +1,3 @@
-document.addEventListener('turbo:load', () => {
-  initializePriceCalculation();
-});
-
 document.addEventListener('DOMContentLoaded', () => {
   console.log("DOMContentLoaded event fired");
   initializePriceCalculation();
