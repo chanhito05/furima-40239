@@ -1,5 +1,4 @@
 document.addEventListener('turbo:load', () => {
-  console.log("Turbo load event fired");
   initializePriceCalculation();
 });
 
