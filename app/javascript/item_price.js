@@ -1,12 +1,34 @@
-window.addEventListener('turbo:load', () => {
-  console.log("OK");
+document.addEventListener('turbo:load', () => {
+  console.log("Turbo load event fired");
+  initializePriceCalculation();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  console.log("DOMContentLoaded event fired");
+  initializePriceCalculation();
+});
+
+function initializePriceCalculation() {
+  const priceInput = document.querySelector('input[name="item[price]"]');
+  if (priceInput) {
+    priceInput.addEventListener('input', () => {
+      validatePrice();
+      calculateProfit();
+    });
+  } else {
+    console.error("Price input element not found");
+  }
+}
 
 function validatePrice() {
   const priceInput = document.querySelector('input[name="item[price]"]');
   const priceError = document.getElementById('price-error');
-  const price = parseInt(priceInput.value, 10);
+  if (!priceError) {
+    console.error("Price error element not found");
+    return;
+  }
 
+  const price = parseInt(priceInput.value, 10);
   if (isNaN(price) || price < 300 || price > 9999999) {
     priceError.style.display = 'inline';
   } else {
@@ -19,6 +41,11 @@ function calculateProfit() {
   const taxPrice = document.getElementById('add-tax-price');
   const profit = document.getElementById('profit');
 
+  if (!priceInput || !taxPrice || !profit) {
+    console.error("One or more elements for calculation not found");
+    return;
+  }
+
   const price = parseInt(priceInput.value, 10);
   if (isNaN(price) || price < 300 || price > 9999999) {
     taxPrice.innerHTML = '';
@@ -27,17 +54,7 @@ function calculateProfit() {
     const fee = Math.floor(price * 0.1); // 販売手数料は10%
     const netProfit = price - fee;
 
-    taxPrice.innerHTML = fee.toLocaleString() + '円';
-    profit.innerHTML = netProfit.toLocaleString() + '円';
+    taxPrice.innerHTML = fee.toLocaleString() + '';
+    profit.innerHTML = netProfit.toLocaleString() + '';
   }
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-  const priceInput = document.querySelector('input[name="item[price]"]');
-  if (priceInput) {
-    priceInput.addEventListener('input', function() {
-      validatePrice();
-      calculateProfit();
-    });
-  }
-});
