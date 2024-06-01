@@ -49,7 +49,7 @@ function calculateProfit() {
     const fee = Math.floor(price * 0.1); // 販売手数料は10%
     const netProfit = price - fee;
 
-    taxPrice.innerHTML = fee.toLocaleString() + '';
-    profit.innerHTML = netProfit.toLocaleString() + '';
+    taxPrice.innerHTML = fee.toLocaleString(undefined, { maximumFractionDigits: 0 }) + '';
+    profit.innerHTML = netProfit.toLocaleString(undefined, { maximumFractionDigits: 0 }) + '円';
   }
 }
