@@ -126,10 +126,12 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
+   <!--
       <% if @items.present? %>
         <% @items.each do |item| %>
           <li class='list'>
             <%= link_to item_path(item) do %>
+            -->
               <div class='item-img-content'>
                 <% if item.image.attached? %>
                   <%= image_tag item.image.variant(resize: "300x300"), class: "item-img" %>
@@ -141,17 +143,18 @@
                   <p><%= number_to_currency(item.price, unit: "¥") %></p>
                   <p><%= item.shipping_cost_id == 1 ? "送料無料" : "着払い(購入者負担)" %></p>
                   <% if item.sold_out? %>
+                <!--
                     <div class='sold-out'>
                       <span>Sold Out!!</span>
                     </div>
                   <% end %>
+                  -->
                 </div>
               </div>
             <% end %>
           </li>
         <% end %>
       <% else %>
-        <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
         <li class='list'>
           <%= link_to '#' do %>
           <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
