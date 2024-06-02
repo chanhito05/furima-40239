@@ -129,7 +129,7 @@
     <% if @items.present? %>
       <% @items.each do |item| %>
         <li class='list'>
-        <%= link_to item_path(item) do %>
+        <%= link_to "#" do %>
             <div class='item-img-content'>
               <% if item.image.attached? %>
                 <%= image_tag item.image.variant(resize: "300x300"), class: "item-img" %>
@@ -140,11 +140,9 @@
                 <h3><%= item.name %></h3>
                 <p><%= number_to_currency(item.price, unit: "¥", precision: 0) %></p>
                 <p><%= item.shipping_cost.name %></p>
-               <%# 商品が売れていればsold outを表示しましょう %>
                 <div class='sold-out'>
                 <span>Sold Out!!</span>
                 </div>
-               <%# //商品が売れていればsold outを表示しましょう %>
 
               </div>
             </div>
