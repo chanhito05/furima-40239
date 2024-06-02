@@ -8,8 +8,6 @@ class Item < ApplicationRecord
   belongs_to :shipping_time
 
   has_one_attached :image
-  has_one :purchase, class_name: 'Purchase' # 購入関連のアソシエーション
-
   # has_one :order
 
   validates :image, presence: true
@@ -26,8 +24,9 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_cost
   
 
-  def sold_out?   
-    purchase.present?
+  def sold_out?
+    
+# order.present?
   end
 end
 
