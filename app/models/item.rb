@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_time
 
   has_one_attached :image
-  has_one :purchase
+  has_one :purchase, class_name: 'Purchase' # 購入関連のアソシエーション
 
   # has_one :order
 

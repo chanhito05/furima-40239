@@ -50,13 +50,7 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value">
-            <% if @item.user.present? %>
-              <%= @item.user.nick_name %>
-            <% else %>
-              ユーザー情報がありません
-            <% end %>
-          </td>
+          <td class="detail-value"><%= @item.user.nick_name %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
@@ -103,7 +97,7 @@
       </p>
       <button type="submit" class="comment-btn">
         <%= image_tag "comment.png", class: "comment-flag-icon", width: "20", height: "25" %>
-        <span>コメントする</span>
+        <span>コメントする<span>
       </button>
     </form>
   </div>
