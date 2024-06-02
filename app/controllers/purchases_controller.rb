@@ -1,4 +1,5 @@
 class PurchasesController < ApplicationController
+=begin
   before_action :set_item
 
   def new
@@ -26,4 +27,5 @@ class PurchasesController < ApplicationController
   def purchase_params
     params.require(:purchase).permit(:credit_card_number, :expiration_date, :cvv)
   end
+=end
 end

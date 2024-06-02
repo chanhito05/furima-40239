@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_time
 
   has_one_attached :image
-  has_one :purchase
+  # has_one :purchase
 
   # has_one :order
 
@@ -25,10 +25,11 @@ class Item < ApplicationRecord
   include ActiveHash::Associations
   belongs_to_active_hash :shipping_cost
   
-
+=begin
   def sold_out?   
     purchase.present?
   end
+=end
 end
 
 
