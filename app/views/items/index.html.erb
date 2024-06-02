@@ -141,9 +141,9 @@
                 <div class='item-info'>
                   <h3><%= item.name %></h3>
                   <p><%= number_to_currency(item.price, unit: "¥") %></p>
-                  <p><%= item.shipping_cost_id == 1 ? "送料無料" : "着払い(購入者負担)" %></p>
+                  <p><%= item.shipping_cost.name %></p>
+              <!--  
                   <% if item.sold_out? %>
-                <!--
                     <div class='sold-out'>
                       <span>Sold Out!!</span>
                     </div>
