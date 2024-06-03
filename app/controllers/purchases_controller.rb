@@ -1,3 +1,5 @@
+=begin 
+ *商品購入機能で実装
 class PurchasesController < ApplicationController
 
   before_action :set_item
@@ -29,3 +31,4 @@ class PurchasesController < ApplicationController
   end
 
 end
+=end
