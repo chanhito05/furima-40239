@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
   before_action :check_item_owner, only: [:edit, :update, :destroy]
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
