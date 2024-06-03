@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:edit, :update, :show, :destroy]
-  # before_action :set_select_options, only: [:new, :edit]
+  before_action :check_item_owner, only: [:edit, :update, :destroy]
 
   def edit
     @item = Item.find(params[:id])
@@ -56,6 +56,13 @@ class ItemsController < ApplicationController
   #   @shipping_areas = ShippingArea.all
   #   @shipping_times = ShippingTime.all
   # end
+
+  def check_item_owner
+    unless @item.user_id == current_user.id
+      redirect_to root_path, alert: '不正なアクセスです。'
+    end
+  end
+
 
   def item_params
     params.require(:item).permit(:image, :name, :description, :category_id, :condition_id, :shipping_cost_id, :shipping_area_id, :shipping_time_id, :price)
