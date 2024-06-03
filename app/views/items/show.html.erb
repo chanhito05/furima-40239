@@ -13,13 +13,13 @@
         <%= image_tag "item-sample.png", class: "item-box-img" %>
       <% end %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <!--
-      <%# if @item.sold_out? %>
+      <%= link_to "購入画面に進む", "#", data: { turbo: false }, class:"item-red-btn"%>
+      <% if @item.sold_out? %>
         <div class="sold-out">
           <span>Sold Out!!</span>
         </div>
-      <%# end %>
-      -->
+      <% end %>
+      
       <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
     <div class="item-price-box">
