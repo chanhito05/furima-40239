@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:edit, :update, :show, :destroy]
-  before_action :set_select_options, only: [:new, :edit]
+  # before_action :set_select_options, only: [:new, :edit]
 
   def edit
     @item = Item.find(params[:id])
@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to @item, notice: '商品情報が更新されました。'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -37,7 +37,6 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-
 =begin
   def destroy
     @item.destroy
@@ -50,13 +49,13 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def set_select_options
-    @categories = Category.all
-    @conditions = Condition.all
-    @shipping_costs = ShippingCost.all
-    @shipping_areas = ShippingArea.all
-    @shipping_times = ShippingTime.all
-  end
+  # def set_select_options
+  #   @categories = Category.all
+  #   @conditions = Condition.all
+  #   @shipping_costs = ShippingCost.all
+  #   @shipping_areas = ShippingArea.all
+  #   @shipping_times = ShippingTime.all
+  # end
 
   def item_params
     params.require(:item).permit(:image, :name, :description, :category_id, :condition_id, :shipping_cost_id, :shipping_area_id, :shipping_time_id, :price)
