@@ -1,2 +1,63 @@
-<h1>Purchases#new</h1>
-<p>Find me in app/views/purchases/new.html.erb</p>
+<h2>購入情報入力</h2>
+
+<%= form_with(model: [@item, @purchase], local: true) do |f| %>
+  <% if @purchase.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved:</h2>
+      <ul>
+        <% @purchase.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :card_number, "クレジットカード番号" %><br>
+    <%= f.text_field :card_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :expiration_date, "有効期限" %><br>
+    <%= f.text_field :expiration_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :security_code, "セキュリティコード" %><br>
+    <%= f.text_field :security_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :postal_code, "郵便番号" %><br>
+    <%= f.text_field :postal_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :prefecture_id, "都道府県" %><br>
+    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "都道府県を選択" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city, "市区町村" %><br>
+    <%= f.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address, "番地" %><br>
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :building, "建物名" %><br>
+    <%= f.text_field :building %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone_number, "電話番号" %><br>
+    <%= f.text_field :phone_number %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "購入する" %>
+  </div>
+<% end %>
