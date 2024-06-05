@@ -9,6 +9,7 @@ class PaymentForm
     validates :address
     validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "は10桁または11桁の数字で入力してください" }
     validates :token
+    
   end
 
   def save

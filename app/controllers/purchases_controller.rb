@@ -3,8 +3,6 @@ class PurchasesController < ApplicationController
   before_action :set_item
   before_action :check_item_availability, only: [:new, :create]
 
-  
-
   def new
     @order = PaymentForm.new
     @prefectures = Prefecture.all
@@ -16,10 +14,13 @@ class PurchasesController < ApplicationController
     @order.user_id = current_user.id
     @order.item_id = @item.id
     @order.price = @item.price # priceの設定
+    
+    
     if @order.valid?
       Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+
       Payjp::Charge.create(
-        amount: @item.price,
+        amount: @order.price,
         card: order_params[:token],  # トークンを渡す
         currency: 'jpy'
       )
@@ -27,10 +28,10 @@ class PurchasesController < ApplicationController
       redirect_to root_path, notice: '購入が完了しました。'
     else
       @prefectures = Prefecture.all
+  
       render 'orders/index', status: :unprocessable_entity
     end
     Rails.logger.debug("Order Params: #{order_params.inspect}")
-
   end
 
   private
@@ -46,8 +47,6 @@ class PurchasesController < ApplicationController
   end
 
   def order_params
-    params.require(:payment_form).permit(
-      :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :token
-    )
+    params.require(:payment_form).permit(:postal_code, :prefecture_id, :city, :address, :building, :phone_number, :token, :price)
   end
 end

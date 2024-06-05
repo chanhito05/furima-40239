@@ -1,4 +1,4 @@
-//カリキュラム クレジットカード情報のトークンを作成するためのJavaScriptファイルを作成 残す
+// 残す
 const pay = () => {
 const payjp = Payjp('pk_test_914a8a1322d306b4d97fe1f7')// PAY.JPテスト公開鍵  
 const elements = payjp.elements();
