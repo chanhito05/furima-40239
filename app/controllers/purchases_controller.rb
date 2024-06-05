@@ -3,23 +3,34 @@ class PurchasesController < ApplicationController
   before_action :set_item
   before_action :check_item_availability, only: [:new, :create]
 
+  
+
   def new
-    @purchase = PurchaseForm.new
+    @order = PaymentForm.new
     @prefectures = Prefecture.all
     render 'orders/index'  # ビューの指定
   end
 
   def create
-    @purchase = PurchaseForm.new(purchase_params)
-    @purchase.item_id = @item.id
-    @purchase.user_id = current_user.id
-    @prefectures = Prefecture.all
-
-    if @purchase.save
-      redirect_to @item, notice: '購入が完了しました。'
+    @order = PaymentForm.new(order_params)
+    @order.user_id = current_user.id
+    @order.item_id = @item.id
+    @order.price = @item.price # priceの設定
+    if @order.valid?
+      Payjp.api_key = Rails.application.credentials.payjp[:secret_key]
+      Payjp::Charge.create(
+        amount: @item.price,
+        card: order_params[:token],  # トークンを渡す
+        currency: 'jpy'
+      )
+      @order.save
+      redirect_to root_path, notice: '購入が完了しました。'
     else
+      @prefectures = Prefecture.all
       render 'orders/index', status: :unprocessable_entity
     end
+    Rails.logger.debug("Order Params: #{order_params.inspect}")
+
   end
 
   private
@@ -34,14 +45,9 @@ class PurchasesController < ApplicationController
     end
   end
 
-  def purchase_params
-    params.require(:purchase_form).permit(
-      :credit_card_number, :expiration_date, :cvv,
-      :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :credit_card_number, :expiration_date, :cvv
-    ).merge(user_id: current_user.id, item_id: @item.id)
-  end
-
-  def redirect_if_sold_out
-    redirect_to root_path, alert: 'この商品は既に売却されています。' if @item.sold_out?
+  def order_params
+    params.require(:payment_form).permit(
+      :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :token
+    )
   end
 end
