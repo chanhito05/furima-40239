@@ -1,4 +1,4 @@
-require 'rails_helper'
+equire 'rails_helper'
 
 RSpec.describe PurchaseForm, type: :model do
   before do
