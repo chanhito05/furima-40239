@@ -3,6 +3,8 @@ class PurchasesController < ApplicationController
   before_action :set_item
   before_action :check_item_availability, only: [:new, :create]
 
+
+
   def new
     @order = PaymentForm.new
     @prefectures = Prefecture.all

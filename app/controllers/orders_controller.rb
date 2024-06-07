@@ -1,31 +1,33 @@
 class OrdersController < ApplicationController
-  
   def index
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @order = Order.new
   end
 
   def create
-    @order = PaymentForm.new(order_params)
+    @order = Order.new(order_params)
     if @order.valid?
-      Payjp.api_key = "sk_test_sk_test_08fa5480729c7409514eac6c"  # 自身のPAY.JPテスト秘密鍵を記述しましょう
-      Payjp::Charge.create(
-        amount: @order.price,  # 商品の値段
-        card: @order.token,    # カードトークン
-        currency: 'jpy'                 # 通貨の種類（日本円）
-      )
+      pay_item
       @order.save
-       redirect_to root_path
+      return redirect_to root_path
     else
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render 'index', status: :unprocessable_entity
     end
   end
+
   private
 
   def order_params
-    params.require(:payment_form).permit(:price, :token, :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :item_id, :user_id)
+    params.require(:order).permit(:price).merge(token: params[:token])
   end
-
-
 end
 
-
+def pay_item
+  Payjp.api_key =  ENV["PAYJP_SECRET_KEY"]
+  Payjp::Charge.create(
+    amount: order_params[:price],
+    card: order_params[:token],
+    currency: 'jpy'
+  )
+end
