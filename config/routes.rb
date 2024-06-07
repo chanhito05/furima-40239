@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   root to: 'items#index'
 
   resources :items do
-    resources :payments, only: [:index, :create]  # `index`アクションを追加している場合
-    resources :purchases, only: [:new, :create]
+    resources :orders, only: [:index, :create]  # `index`アクションを追加している場合
   end
 end
