@@ -38,7 +38,7 @@
 * belongs_to :user
 
 
-### orders table
+### purchases table
 
 | Colum             | Type        | Options                     |
 |-------------------|-------------|-----------------------------|
@@ -51,11 +51,11 @@
 * belong_to :item
 * has_one :shipping_address
 
-### shipping_addresses table
+### addresses table
 
 | Colum             | Type        | Options                     |
 |-------------------|-------------|-----------------------------|
-| postal_id   　　　 | string      | null: false                 |
+| postal_id         | string      | null: false                 |
 | shipping_region_id| integer     | null: false                 |
 | city              | string      | null: false                 |
 | address_line1     | string      | null: false                 |

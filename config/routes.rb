@@ -1,9 +1,11 @@
+# 使う
 Rails.application.routes.draw do
   devise_for :users
-  resources :items do
-   resources :purchases, only: [:new, :create]
-   resources :products, only: [:edit, :update]
 
-  end
+  # `root`ルートを一つだけ定義
   root to: 'items#index'
+
+  resources :items do
+    resources :orders, only: [:index, :create]  # `index`アクションを追加している場合
+  end
 end

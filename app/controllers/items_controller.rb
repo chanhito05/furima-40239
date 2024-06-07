@@ -66,4 +66,10 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:image, :name, :description, :category_id, :condition_id, :shipping_cost_id, :shipping_area_id, :shipping_time_id, :price)
   end
+
+  # 購入完了画面へのパスを指定するヘルパーメソッド
+  def purchase_confirmation_path(item)
+    item_path(item) + "/purchase_confirmation" # 例：/items/1/purchase_confirmation
+  end
+
 end
